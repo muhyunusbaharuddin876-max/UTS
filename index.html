@@ -210,7 +210,21 @@
         loadGeoJSON('assets/Putra.geojson', '#1e6395', 'Asrama Putra');
         loadGeoJSON('assets/Putri.geojson', '#ff6600', 'Asrama Putri');
         loadGeoJSON('assets/ya ALLAH.geojson', '#ffc130', 'Bangunan Umum');
-
+        const legend = L.control({ position: 'bottomright' });
+  legend.onAdd = function() {
+    const div = L.DomUtil.create('div', 'info legend');
+    div.style.background = 'white';
+    div.style.padding = '10px';
+    div.style.borderRadius = '8px';
+    div.style.fontSize = '14px';
+    div.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+    div.innerHTML = `<b>Legenda</b><br>
+      <span style="display:inline-block;width:15px;height:15px;background:#1e6395;margin-right:5px;"></span> Asrama Putra<br>
+      <span style="display:inline-block;width:15px;height:15px;background:#ff6600;margin-right:5px;"></span> Asrama Putri<br>
+      <span style="display:inline-block;width:15px;height:15px;background:#ffc130;margin-right:5px;"></span> Bangunan Umum`;
+    return div;
+  };
+  legend.addTo(map);
         map.on('load', function() {
             // Asrama Putra
             map.addSource('asrama_putra', { type: 'geojson', data: 'assets/Putra.geojson' });
